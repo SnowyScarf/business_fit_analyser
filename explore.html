@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore Domains — BizFit</title>
+<meta name="description" content="Browse 20+ student-friendly business opportunities. Zero to minimal capital needed.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F8FAFC;--bg2:#FFFFFF;--surface:#FFFFFF;--surface2:#F1F5F9;
+  --ink:#0F172A;--soft:#334155;--muted:#64748B;--border:#E2E8F0;
+  --primary:#059669;--phov:#047857;--plight:#D1FAE5;
+  --pglow:rgba(5,150,105,.12);--pglow2:rgba(5,150,105,.06);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);background-image:url("wavy_grid.svg");background-size:1200px 1200px;background-position:top center;background-attachment:fixed;color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:13px 6%;background:rgba(248,250,252,.92);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
+.logo{font-weight:800;font-size:22px;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:6px;letter-spacing:-1px}.logo span{color:var(--primary)}
+.nav-links{display:flex;gap:26px}.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--primary);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-weight:600;font-size:13px;font-family:'Inter',sans-serif;text-decoration:none;text-transform:uppercase;letter-spacing:.02em;transition:all .2s;box-shadow:0 4px 12px rgba(5,150,105,.25)}.nav-cta:hover{background:var(--phov);transform:translateY(-1px)}
+
+/* HERO */
+.hero{position:relative;padding:80px 6% 60px;text-align:center;overflow:hidden;background:transparent}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(5,150,105,.07) 0%,transparent 70%);pointer-events:none}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:900;letter-spacing:-2px;line-height:1.1;margin-bottom:16px;color:var(--ink)}
+.hero h1 em{font-style:normal;color:var(--primary)}
+.hero p{font-size:17px;color:var(--muted);max-width:520px;margin:0 auto 32px}
+.hero-stats{display:flex;justify-content:center;gap:48px;margin-top:12px}
+.stat{text-align:center}.stat-num{font-size:32px;font-weight:800;color:var(--primary)}.stat-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+
+/* FILTER BAR */
+.filter-bar{padding:16px 6%;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;gap:10px;overflow-x:auto;align-items:center;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.search-input{padding:10px 16px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:14px;min-width:220px;outline:none;background:var(--bg);color:var(--ink);transition:all .2s}.search-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--pglow)}
+.fbtn{padding:8px 16px;font-size:13px;font-weight:600;color:var(--muted);background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;white-space:nowrap;transition:all .25s;font-family:inherit}.fbtn:hover{border-color:var(--primary);color:var(--primary)}.fbtn.on{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 4px 12px rgba(5,150,105,.2)}
+
+/* GRID */
+.cat-sec{padding:48px 6% 24px;background:transparent}
+.cat-hdr{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.cat-icon{font-size:28px;line-height:1}
+.cat-title{font-size:22px;font-weight:700;letter-spacing:-.5px;color:var(--ink)}
+.cat-count{font-size:11px;font-weight:700;color:var(--primary);background:var(--plight);padding:3px 10px;border-radius:20px;border:1px solid #6EE7B7}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+
+/* CARDS */
+.card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);overflow:hidden;opacity:0;transform:translateY(20px);animation:cardIn .5s ease forwards;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.card:nth-child(1){animation-delay:.05s}.card:nth-child(2){animation-delay:.1s}.card:nth-child(3){animation-delay:.15s}.card:nth-child(4){animation-delay:.2s}.card:nth-child(5){animation-delay:.25s}
+@keyframes cardIn{to{opacity:1;transform:translateY(0)}}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),#34d399);opacity:0;transition:opacity .3s}
+.card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:0 12px 40px rgba(5,150,105,.12)}.card:hover::before{opacity:1}
+
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.card-name{font-size:17px;font-weight:700;line-height:1.3;color:var(--ink);flex:1}
+.card-arrow{width:32px;height:32px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);transition:all .3s;flex-shrink:0;margin-left:12px;border:1px solid var(--border)}
+.card:hover .card-arrow{background:var(--primary);color:#fff;border-color:var(--primary);transform:rotate(-45deg)}
+
+.card-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;background:var(--surface2);color:var(--soft);border:1px solid var(--border)}
+.chip.green{background:var(--plight);color:#059669;border-color:#6EE7B7}
+
+.card-peek{font-size:13px;color:var(--muted);line-height:1.5;max-height:0;overflow:hidden;transition:max-height .4s ease,opacity .3s;opacity:0}
+.card:hover .card-peek{max-height:100px;opacity:1}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(8px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s}.modal-bg.show{display:flex;opacity:1}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:20px;max-width:520px;width:100%;padding:40px;position:relative;transform:scale(.95);transition:transform .3s;box-shadow:0 24px 64px rgba(0,0,0,.12)}.modal-bg.show .modal{transform:scale(1)}
+.modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}.modal-close:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.modal-tag{display:inline-block;font-size:12px;font-weight:700;color:var(--primary);background:var(--plight);padding:4px 14px;border-radius:20px;margin-bottom:16px;text-transform:uppercase;letter-spacing:.05em;border:1px solid #6EE7B7}
+.modal h2{font-size:24px;font-weight:800;margin-bottom:12px;letter-spacing:-.5px;line-height:1.2;color:var(--ink)}
+.modal p{font-size:15px;color:var(--soft);line-height:1.7;margin-bottom:24px}
+.modal-meta{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.meta-box{background:var(--surface2);border-radius:12px;padding:16px;border:1px solid var(--border)}
+.meta-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:4px}
+.meta-val{font-size:16px;font-weight:700;color:var(--primary)}
+.modal-cta{display:block;width:100%;padding:14px;background:var(--primary);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;text-align:center;text-decoration:none;transition:all .2s;text-transform:uppercase;letter-spacing:.03em}.modal-cta:hover{background:var(--phov);box-shadow:0 8px 24px rgba(5,150,105,.25)}
+
+/* EMPTY */
+.empty-state{text-align:center;padding:60px 0;display:none}.empty-state h3{font-size:20px;color:var(--ink);margin-bottom:8px}
+
+/* FOOTER */
+footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);background:var(--bg2);flex-wrap:wrap;gap:10px;background:white}
+.fl{display:flex;gap:20px}.fl a{color:var(--muted);text-decoration:none}.fl a:hover{color:var(--primary)}
+
+/* CTA BOTTOM */
+.bottom-cta{padding:60px 6%;text-align:center;background:transparent;border-top:1px solid var(--border)}
+.bottom-cta h2{font-size:clamp(24px,3vw,36px);font-weight:800;margin-bottom:12px;letter-spacing:-1px;color:var(--ink)}
+.bottom-cta p{color:var(--muted);margin-bottom:28px;font-size:15px}
+
+@media(max-width:600px){.hero-stats{gap:24px}.stat-num{font-size:24px}.grid{grid-template-columns:1fr}.nav-links{display:none}.modal{padding:28px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo" style="display:inline-flex;align-items:center;gap:6px;"><img src="logo.png" alt="" style="height:40px;width:auto;transform:scale(1.1);transform-origin:left center"> Biz<span>Fit</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="how-it-works.html">How it works</a>
+    <a href="explore.html">Explore areas</a>
+    <a href="case-studies.html">Stories</a>
+    <a href="about.html">About</a>
+  </div>
+  <a href="waitlist.html" class="nav-cta">Join waitlist</a>
+</nav>
+
+<section class="hero">
+  <h1>Find Your <em>Perfect</em> Path</h1>
+  <p>Curated opportunities that students are already running. Hover to peek, click to explore.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Opportunities</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">Domains</div></div>
+    <div class="stat"><div class="stat-num">₹0</div><div class="stat-label">Min Capital</div></div>
+  </div>
+</section>
+
+<div class="filter-bar">
+  <input class="search-input" type="text" id="searchBox" placeholder="Search paths..." oninput="searchBiz(this.value)">
+  <div class="fbtn on" onclick="filterCat('all',this)">All</div>
+  <div class="fbtn" onclick="filterCat('digital',this)">💻 Tech</div>
+  <div class="fbtn" onclick="filterCat('campus',this)">🎓 Campus</div>
+  <div class="fbtn" onclick="filterCat('creative',this)">🎨 Creative</div>
+  <div class="fbtn" onclick="filterCat('service',this)">🔧 Services</div>
+  <div class="fbtn" onclick="filterCat('resell',this)">🛒 Commerce</div>
+  <div class="fbtn" onclick="filterCat('health',this)">💚 Health</div>
+  <div class="fbtn" onclick="filterCat('planet',this)">🌍 Eco</div>
+</div>
+
+<section class="cat-sec" id="sec-digital"><div class="cat-hdr"><span class="cat-icon">💻</span><h2 class="cat-title">Technology & Digital</h2><span class="cat-count">5</span></div><div class="grid" id="grid-digital"></div></section>
+<section class="cat-sec" id="sec-campus"><div class="cat-hdr"><span class="cat-icon">🎓</span><h2 class="cat-title">Campus & Student</h2><span class="cat-count">4</span></div><div class="grid" id="grid-campus"></div></section>
+<section class="cat-sec" id="sec-service"><div class="cat-hdr"><span class="cat-icon">🔧</span><h2 class="cat-title">Local Services</h2><span class="cat-count">3</span></div><div class="grid" id="grid-service"></div></section>
+<section class="cat-sec" id="sec-creative"><div class="cat-hdr"><span class="cat-icon">🎨</span><h2 class="cat-title">Creative & Content</h2><span class="cat-count">3</span></div><div class="grid" id="grid-creative"></div></section>
+<section class="cat-sec" id="sec-resell"><div class="cat-hdr"><span class="cat-icon">🛒</span><h2 class="cat-title">Commerce & Resell</h2><span class="cat-count">2</span></div><div class="grid" id="grid-resell"></div></section>
+<section class="cat-sec" id="sec-health"><div class="cat-hdr"><span class="cat-icon">💚</span><h2 class="cat-title">Health & Wellness</h2><span class="cat-count">2</span></div><div class="grid" id="grid-health"></div></section>
+<section class="cat-sec" id="sec-planet"><div class="cat-hdr"><span class="cat-icon">🌍</span><h2 class="cat-title">Eco & Planet</h2><span class="cat-count">1</span></div><div class="grid" id="grid-planet"></div></section>
+
+<div class="empty-state" id="emptyState"><h3>No matches found</h3><p style="color:var(--muted);font-size:14px;">Try a different search term or domain.</p></div>
+
+<section class="bottom-cta">
+  <h2>Ready to start your journey?</h2>
+  <p>Join the waitlist and get a personalized fit report for free.</p>
+  <a href="waitlist.html" class="nav-cta" style="padding:16px 40px;font-size:14px">Get Your Fit Report</a>
+</section>
+
+<footer>
+  <a href="index.html" class="logo" style="display:inline-flex;align-items:center;gap:6px;font-size:18px"><img src="logo.png" alt="" style="height:34px;width:auto;transform:scale(1.1);transform-origin:left center"> Biz<span>Fit</span></a>
+  <div class="fl"><a href="index.html">Home</a><a href="how-it-works.html">How it works</a><a href="explore.html">Explore areas</a><a href="case-studies.html">Stories</a><a href="about.html">About</a><a href="waitlist.html">Join waitlist</a><a href="mailto:hello@bizfit.com">Ask a question</a></div>
+  <div>© 2026 BizFit · Made for the Students by the Students</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-tag" id="mTag"></div>
+    <h2 id="mTitle"></h2>
+    <p id="mDesc"></p>
+    <div class="modal-meta">
+      <div class="meta-box"><div class="meta-label">Capital Needed</div><div class="meta-val" id="mCap"></div></div>
+      <div class="meta-box"><div class="meta-label">Key Advantage</div><div class="meta-val" id="mAdv"></div></div>
+    </div>
+    <a href="waitlist.html" class="modal-cta">Get Personalized Fit Report →</a>
+  </div>
+</div>
+
+<script>
+const DATA=[
+{n:"AI Prompt Freelancing",d:"Businesses need people who get results from ChatGPT & Claude. Sell prompt packs or consult hourly. Fiverr and LinkedIn are full of buyers.",cap:"₹0",adv:"Fiverr · LinkedIn",cat:"digital",tags:["Tech","AI"]},
+{n:"Short-Form Video Editing",d:"Reels and Shorts editing for local businesses and creators. Every brand needs video; almost none have editors. CapCut is free.",cap:"₹0",adv:"Fastest growing",cat:"digital",tags:["Tech","Video"]},
+{n:"Local SEO for Small Shops",d:"Set up Google Business profiles, add photos, get reviews for restaurants and clinics. Each client takes 3 hours. Most shops don't know this exists.",cap:"₹0",adv:"Walk-in pitch",cat:"digital",tags:["Tech","SEO"]},
+{n:"AI Chatbot Setup",d:"Build WhatsApp or website chatbots for salons, clinics, restaurants using no-code tools like Tidio or ManyChat. They pay monthly.",cap:"₹0",adv:"Recurring income",cat:"digital",tags:["Tech","No-code"]},
+{n:"AI Study Material Maker",d:"Convert textbook chapters into flashcards, MCQs, and visual summaries using AI. Sell semester packs per subject on WhatsApp.",cap:"₹0",adv:"Telegram groups",cat:"digital",tags:["Tech","EdTech"]},
+{n:"Study Notes Subscription",d:"Create concise, well-designed notes for tough subjects. Sell semester access via Razorpay. Demand spikes before exams — predictably.",cap:"₹0",adv:"WhatsApp groups",cat:"campus",tags:["Campus","Notes"]},
+{n:"Late-Night Hostel Delivery",d:"Take orders on WhatsApp after 10 PM when canteens close. Source snacks wholesale. Delivery radius = 10 min on a cycle.",cap:"₹2k",adv:"Zero competition",cat:"campus",tags:["Campus","Food"]},
+{n:"Campus Event Photographer",d:"Fests, farewells, freshers' — every event needs photos. Start with your phone. Build a Linktree portfolio.",cap:"₹0",adv:"Instagram portfolio",cat:"campus",tags:["Campus","Photo"]},
+{n:"Placement Prep Club",d:"Run paid mock interviews, GD practice, and aptitude coaching for juniors. Students trust peers who just cracked the same companies.",cap:"₹0",adv:"Word of mouth",cat:"campus",tags:["Campus","Career"]},
+{n:"Tech Support for Seniors",d:"140M+ Indians over 60 struggle with UPI, video calls, OTPs. Walk to the next apartment block and find 10 clients.",cap:"₹0",adv:"Neighbourhood",cat:"service",tags:["Local","Tech"]},
+{n:"Resume + LinkedIn Makeovers",d:"Final-year students pay for a resume that gets calls. Pair it with LinkedIn rewrite. Template once, reuse forever.",cap:"₹0",adv:"Internshala · LinkedIn",cat:"service",tags:["Local","Career"]},
+{n:"Sign Language Tutoring",d:"India has 63 lakh deaf or hard-of-hearing people. Learn ISL from free YouTube resources, teach on Zoom. Near-zero competition.",cap:"₹0",adv:"Low competition",cat:"service",tags:["Local","Education"]},
+{n:"Vernacular Content Creation",d:"Telugu, Tamil, Marathi, Kannada content is massively undersupplied. Brands pay more than English creators. Mother tongue = your edge.",cap:"₹0",adv:"Low competition",cat:"creative",tags:["Creative","Regional"]},
+{n:"Faceless YouTube Automation",d:"Run channels on finance, history, or tech facts without showing your face. AI voiceover + stock footage. One video earns for years.",cap:"₹0",adv:"Passive income",cat:"creative",tags:["Creative","YouTube"]},
+{n:"Meme Page → Brand Deals",d:"Build a niche meme page on college life. At 10k followers brands pay per post. No camera, no editing — just consistency.",cap:"₹0",adv:"Instagram",cat:"creative",tags:["Creative","Social"]},
+{n:"Thrift & Resell on Instagram",d:"Source second-hand branded clothes from OLX. Style, photograph, resell. Eco-angle gets organic press and loyal buyers.",cap:"₹1k",adv:"Scalable",cat:"resell",tags:["Commerce","Fashion"]},
+{n:"Rebrand Local Products",d:"Find unbranded products from local manufacturers — snacks, spices. Add a label. List on Amazon, Meesho, or Instagram.",cap:"₹5k",adv:"Scalable",cat:"resell",tags:["Commerce","D2C"]},
+{n:"Fitness Coaching via WhatsApp",d:"Personalised workout + diet plans for busy students. Deliver over WhatsApp. No gym needed. Charge monthly retainers.",cap:"₹0",adv:"Recurring income",cat:"health",tags:["Health","Fitness"]},
+{n:"Mental Wellness Journaling Bot",d:"Daily check-in + journaling bot on WhatsApp for college students. Mental health tools are underserved. Campus tie-ups scale it.",cap:"₹0",adv:"Campus tie-ups",cat:"health",tags:["Health","Wellness"]},
+{n:"Eco-Product Dropshipping",d:"Sell bamboo toothbrushes, reusable bags, beeswax wraps on Instagram. Eco-conscious buyers refer constantly to friends.",cap:"₹3k–8k",adv:"Growing demand",cat:"planet",tags:["Eco","D2C"]}
+];
+
+function renderCards(){
+  const grids={digital:'grid-digital',campus:'grid-campus',service:'grid-service',creative:'grid-creative',resell:'grid-resell',health:'grid-health',planet:'grid-planet'};
+  Object.values(grids).forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML='';});
+  DATA.forEach((item,i)=>{
+    const grid=document.getElementById(grids[item.cat]);
+    if(!grid)return;
+    const card=document.createElement('div');
+    card.className='card';
+    card.setAttribute('data-name',item.n.toLowerCase());
+    card.setAttribute('data-idx',i);
+    card.onclick=()=>openModal(i);
+    card.innerHTML=`
+      <div class="card-top"><div class="card-name">${item.n}</div><div class="card-arrow">→</div></div>
+      <div class="card-chips"><span class="chip green">${item.cap}</span><span class="chip">${item.adv}</span></div>
+      <div class="card-peek">${item.d}</div>`;
+    grid.appendChild(card);
+  });
+}
+
+function openModal(i){
+  const d=DATA[i];
+  document.getElementById('mTag').textContent=d.tags[0];
+  document.getElementById('mTitle').textContent=d.n;
+  document.getElementById('mDesc').textContent=d.d;
+  document.getElementById('mCap').textContent=d.cap;
+  document.getElementById('mAdv').textContent=d.adv;
+  const bg=document.getElementById('modalBg');
+  bg.style.display='flex';
+  requestAnimationFrame(()=>bg.classList.add('show'));
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  const bg=document.getElementById('modalBg');
+  bg.classList.remove('show');
+  setTimeout(()=>{bg.style.display='none'},300);
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+function filterCat(cat,btn){
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  document.querySelectorAll('.cat-sec').forEach(s=>{
+    s.style.display=(cat==='all'||s.id==='sec-'+cat)?'block':'none';
+  });
+  document.getElementById('searchBox').value='';
+  document.querySelectorAll('.card').forEach(c=>c.style.display='');
+  document.getElementById('emptyState').style.display='none';
+}
+
+function searchBiz(val){
+  const q=val.toLowerCase();
+  let found=false;
+  document.querySelectorAll('.cat-sec').forEach(sec=>{
+    let secVis=false;
+    sec.querySelectorAll('.card').forEach(card=>{
+      const match=card.getAttribute('data-name').includes(q);
+      card.style.display=match?'':'none';
+      if(match){secVis=true;found=true;}
+    });
+    sec.style.display=(secVis||q==='')?'block':'none';
+  });
+  document.getElementById('emptyState').style.display=(found||q==='')?'none':'block';
+}
+
+renderCards();
+</script>
+</body>
+</html>
