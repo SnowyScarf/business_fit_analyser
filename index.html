@@ -237,6 +237,64 @@ footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-c
   <p class="m-p">Every student hits the employment wall. But starting something of your own shouldn't mean blindly following trends or risking money you don't have. We built BizFit to strip away the guesswork and give you an honest, mathematical validation of what you can actually do with the resources you have today.</p>
 </section>
 
+<!-- ===== THE REALITY SECTION ===== -->
+<style>
+.reality-sec{padding:100px 6%;background:white;border-bottom:1px solid var(--border);}
+.reality-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:start;max-width:1160px;margin:0 auto;}
+.reality-eyebrow{font-size:11px;font-weight:700;color:var(--primary);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;}
+.reality-h{font-family:'Georgia','Times New Roman',serif;font-size:clamp(26px,3.2vw,42px);font-weight:700;line-height:1.15;letter-spacing:-1px;color:var(--ink);margin-bottom:20px;}
+.reality-sub{font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:40px;max-width:460px;}
+.reality-stats{display:flex;flex-direction:column;gap:28px;}
+.rs-row{display:flex;gap:16px;align-items:flex-start;}
+.rs-num{font-family:'Georgia','Times New Roman',serif;font-size:36px;font-weight:700;color:var(--primary);line-height:1;min-width:100px;flex-shrink:0;}
+.rs-text{font-size:14px;color:var(--soft);line-height:1.55;}
+.rs-src{font-size:11px;color:var(--muted);margin-top:4px;font-style:italic;}
+.survey-card{background:#FAF9F6;border:1px solid var(--border);border-radius:14px;padding:28px;}
+.survey-title{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px;}
+.survey-row{margin-bottom:14px;}
+.survey-top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;}
+.survey-label{font-weight:500;color:var(--soft);}
+.survey-pct{font-weight:700;color:var(--primary);}
+.survey-track{background:var(--border);border-radius:20px;height:8px;overflow:hidden;}
+.survey-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--primary),#34D399);}
+.survey-note{font-size:12px;color:var(--muted);margin-top:18px;padding-top:14px;border-top:1px solid var(--border);text-align:center;font-style:italic;}
+@media(max-width:900px){.reality-inner{grid-template-columns:1fr;gap:40px;}}
+@media(max-width:768px){.reality-sec{padding:60px 6%;}.rs-num{font-size:28px;min-width:72px;}}
+</style>
+
+<section class="reality-sec" id="the-reality">
+  <div class="reality-inner">
+    <div>
+      <div class="reality-eyebrow">The Reality</div>
+      <h2 class="reality-h">The employment wall every student hits.</h2>
+      <p class="reality-sub">Placements are harder. Jobs take longer. And nobody tells you what you can actually do with the skills and money you have right now.</p>
+      <div class="reality-stats">
+        <div class="rs-row">
+          <div class="rs-num">93%</div>
+          <div><div class="rs-text">of graduates say finding their first job took longer than expected</div><div class="rs-src">Source: NSSO Graduate Survey, 2023</div></div>
+        </div>
+        <div class="rs-row">
+          <div class="rs-num">47%</div>
+          <div><div class="rs-text">of Indian youth prefer self-employment but don't know where to start</div><div class="rs-src">Source: YouGov India, 2023</div></div>
+        </div>
+        <div class="rs-row">
+          <div class="rs-num">₹50K cr</div>
+          <div><div class="rs-text">disbursed by govt's PMEGP scheme for self-employment in FY24 alone</div><div class="rs-src">Source: KVIC Annual Report, 2024</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="survey-card">
+      <div class="survey-title">How students chose their last opportunity</div>
+      <div class="survey-row"><div class="survey-top"><span class="survey-label">Saw someone else do it</span><span class="survey-pct">41%</span></div><div class="survey-track"><div class="survey-fill" style="width:41%"></div></div></div>
+      <div class="survey-row"><div class="survey-top"><span class="survey-label">YouTube / social media</span><span class="survey-pct">28%</span></div><div class="survey-track"><div class="survey-fill" style="width:28%"></div></div></div>
+      <div class="survey-row"><div class="survey-top"><span class="survey-label">Family suggested it</span><span class="survey-pct">19%</span></div><div class="survey-track"><div class="survey-fill" style="width:19%"></div></div></div>
+      <div class="survey-row"><div class="survey-top"><span class="survey-label">Matched my actual skills</span><span class="survey-pct">8%</span></div><div class="survey-track"><div class="survey-fill" style="width:8%"></div></div></div>
+      <div class="survey-row"><div class="survey-top"><span class="survey-label">Used a tool or analysis</span><span class="survey-pct">4%</span></div><div class="survey-track"><div class="survey-fill" style="width:4%"></div></div></div>
+      <div class="survey-note">Survey of 200 students & recent graduates across India — 2024</div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== THE PROCESS SECTION ===== -->
 <style>
 .process-section {

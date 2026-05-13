@@ -26,6 +26,7 @@ body{background-color:var(--bg);background-image:url("wavy_grid.svg");background
 nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:13px 6%;background:rgba(248,250,252,.9);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
 .logo{font-family:'Inter',sans-serif;font-weight:800;font-size:22px;color:var(--ink);text-decoration:none;letter-spacing:-1px;}.logo span{color:var(--primary);}
 .nav-links{display:flex;gap:26px;}.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;}.nav-links a:hover{color:var(--ink);}
+.nav-cta{background:var(--primary);color:white;border:none;padding:10px 24px;border-radius:50px;font-weight:600;font-size:13px;font-family:'Inter',sans-serif;text-decoration:none;display:inline-block;text-transform:uppercase;letter-spacing:.02em;transition:all .2s;box-shadow:0 4px 12px rgba(5,150,105,.25);}
 
 .split-layout{display:flex;flex-direction:column;align-items:center;min-height:calc(100vh - 66px);padding:80px 6% 120px;}
 .left{max-width:800px;text-align:center;margin-bottom:40px;position:relative;z-index:2;background:transparent;border:none;padding:0;}
@@ -79,6 +80,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
     <a href="case-studies.html">Stories</a>
     <a href="about.html">About</a>
   </div>
+  <a href="#" class="nav-cta" style="opacity:.35;pointer-events:none;">On waitlist</a>
 </nav>
 
 <div class="split-layout">

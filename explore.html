@@ -125,8 +125,8 @@ footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-c
   <h1>Find Your <em>Perfect</em> Path</h1>
   <p>Curated opportunities that students are already running. Hover to peek, click to explore.</p>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Opportunities</div></div>
-    <div class="stat"><div class="stat-num">7</div><div class="stat-label">Domains</div></div>
+    <div class="stat"><div class="stat-num">35+</div><div class="stat-label">Opportunities</div></div>
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Domains</div></div>
     <div class="stat"><div class="stat-num">₹0</div><div class="stat-label">Min Capital</div></div>
   </div>
 </section>
@@ -141,6 +141,9 @@ footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-c
   <div class="fbtn" onclick="filterCat('resell',this)">🛒 Commerce</div>
   <div class="fbtn" onclick="filterCat('health',this)">💚 Health</div>
   <div class="fbtn" onclick="filterCat('planet',this)">🌍 Eco</div>
+  <div class="fbtn" onclick="filterCat('agri',this)">🌾 Agri</div>
+  <div class="fbtn" onclick="filterCat('food',this)">🍳 Food</div>
+  <div class="fbtn" onclick="filterCat('education',this)">📚 Education</div>
 </div>
 
 <section class="cat-sec" id="sec-digital"><div class="cat-hdr"><span class="cat-icon">💻</span><h2 class="cat-title">Technology & Digital</h2><span class="cat-count">5</span></div><div class="grid" id="grid-digital"></div></section>
@@ -152,6 +155,10 @@ footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-c
 <section class="cat-sec" id="sec-planet"><div class="cat-hdr"><span class="cat-icon">🌍</span><h2 class="cat-title">Eco & Planet</h2><span class="cat-count">1</span></div><div class="grid" id="grid-planet"></div></section>
 
 <div class="empty-state" id="emptyState"><h3>No matches found</h3><p style="color:var(--muted);font-size:14px;">Try a different search term or domain.</p></div>
+
+<section class="cat-sec" id="sec-agri"><div class="cat-hdr"><span class="cat-icon">🌾</span><h2 class="cat-title">Agriculture & Land</h2><span class="cat-count">3</span></div><div class="grid" id="grid-agri"></div></section>
+<section class="cat-sec" id="sec-food"><div class="cat-hdr"><span class="cat-icon">🍳</span><h2 class="cat-title">Food & Beverage</h2><span class="cat-count">4</span></div><div class="grid" id="grid-food"></div></section>
+<section class="cat-sec" id="sec-education"><div class="cat-hdr"><span class="cat-icon">📚</span><h2 class="cat-title">Education & Skilling</h2><span class="cat-count">3</span></div><div class="grid" id="grid-education"></div></section>
 
 <section class="bottom-cta">
   <h2>Ready to start your journey?</h2>
@@ -201,11 +208,30 @@ const DATA=[
 {n:"Rebrand Local Products",d:"Find unbranded products from local manufacturers — snacks, spices. Add a label. List on Amazon, Meesho, or Instagram.",cap:"₹5k",adv:"Scalable",cat:"resell",tags:["Commerce","D2C"]},
 {n:"Fitness Coaching via WhatsApp",d:"Personalised workout + diet plans for busy students. Deliver over WhatsApp. No gym needed. Charge monthly retainers.",cap:"₹0",adv:"Recurring income",cat:"health",tags:["Health","Fitness"]},
 {n:"Mental Wellness Journaling Bot",d:"Daily check-in + journaling bot on WhatsApp for college students. Mental health tools are underserved. Campus tie-ups scale it.",cap:"₹0",adv:"Campus tie-ups",cat:"health",tags:["Health","Wellness"]},
-{n:"Eco-Product Dropshipping",d:"Sell bamboo toothbrushes, reusable bags, beeswax wraps on Instagram. Eco-conscious buyers refer constantly to friends.",cap:"₹3k–8k",adv:"Growing demand",cat:"planet",tags:["Eco","D2C"]}
+{n:"Eco-Product Dropshipping",d:"Sell bamboo toothbrushes, reusable bags, beeswax wraps on Instagram. Eco-conscious buyers refer constantly to friends.",cap:"₹3k–8k",adv:"Growing demand",cat:"planet",tags:["Eco","D2C"]},
+// Agriculture & Land
+{n:"Terrace Farming Kits",d:"Curate and sell urban balcony/terrace vegetable starter kits. Growing demand in cities for home-grown food.",cap:"₹10k",adv:"Urban demand",cat:"agri",tags:["Agri","Urban"]},
+{n:"Mushroom Cultivation",d:"High-demand crop in small spaces. Restaurants and direct buyers pay premium. Can start in a spare room.",cap:"₹30k–2L",adv:"High margins",cat:"agri",tags:["Agri","Farming"]},
+{n:"Organic Farming",d:"Premium vegetables and fruits sold to urban households and stores. Govt subsidies available under PMKSY.",cap:"₹50k–5L",adv:"Govt subsidies",cat:"agri",tags:["Agri","Organic"]},
+// Food & Beverage
+{n:"Cloud Kitchen",d:"Delivery-only kitchen on Zomato/Swiggy — no storefront needed. Low overhead, high volume potential.",cap:"₹1–5L",adv:"No storefront",cat:"food",tags:["Food","Delivery"]},
+{n:"Tiffin Service",d:"Daily meals for office workers, students, or IT parks nearby. Predictable demand, recurring revenue.",cap:"₹20k–1L",adv:"Recurring",cat:"food",tags:["Food","Daily"]},
+{n:"Packaged Snacks / Namkeen",d:"Produce and sell snacks to local shops, supermarkets, online. FSSAI license is simple to get.",cap:"₹30k–3L",adv:"Scalable",cat:"food",tags:["Food","D2C"]},
+{n:"Juice / Beverage Shop",d:"Fresh juices, shakes, or cold brew — high margins, low setup. Footfall-based near colleges or offices.",cap:"₹50k–2L",adv:"High margins",cat:"food",tags:["Food","Retail"]},
+// Education
+{n:"Home Tuition / Coaching",d:"Teach school students — 1:1 or small batch, any subject. Zero capital, high trust factor in local communities.",cap:"₹0",adv:"Zero capital",cat:"education",tags:["Education","Teaching"]},
+{n:"Online Course Creator",d:"Sell knowledge on Udemy, YouTube, or your own platform. Record once, earn repeatedly.",cap:"₹0",adv:"Passive income",cat:"education",tags:["Education","Digital"]},
+{n:"Competitive Exam Coaching",d:"UPSC, JEE, NEET, CLAT — premium coaching with high demand. Can start online with zero infrastructure.",cap:"₹0–5L",adv:"High demand",cat:"education",tags:["Education","Exams"]},
+// Community Services
+{n:"Part-time Tourist Guide",d:"Lead tourists around your city — no capital, just local knowledge and communication skills.",cap:"₹0",adv:"Weekends only",cat:"service",tags:["Local","Tourism"]},
+{n:"Hyperlocal Delivery",d:"Deliver for local shops within 3–5km on a bicycle or bike. WhatsApp-based orders, zero tech needed.",cap:"₹5k",adv:"Recurring",cat:"service",tags:["Local","Delivery"]},
+{n:"Mobile Repair Shop",d:"Smartphone repairs and accessories — low rent, walk-in demand. YouTube can teach you most repairs.",cap:"₹50k–3L",adv:"Walk-in demand",cat:"service",tags:["Local","Repair"]},
+{n:"Solar Panel Dealership",d:"Sell and install rooftop solar systems. Govt subsidies make it attractive. Growing demand in Tier 2–3.",cap:"₹2–10L",adv:"Govt backed",cat:"planet",tags:["Eco","Energy"]},
+{n:"Handicrafts & Artisan Goods",d:"Handmade products sold locally, at fairs, or online. India's handicraft market is ₹70K crore and growing.",cap:"₹10k–1L",adv:"Cultural edge",cat:"creative",tags:["Creative","Handmade"]}
 ];
 
 function renderCards(){
-  const grids={digital:'grid-digital',campus:'grid-campus',service:'grid-service',creative:'grid-creative',resell:'grid-resell',health:'grid-health',planet:'grid-planet'};
+  const grids={digital:'grid-digital',campus:'grid-campus',service:'grid-service',creative:'grid-creative',resell:'grid-resell',health:'grid-health',planet:'grid-planet',agri:'grid-agri',food:'grid-food',education:'grid-education'};
   Object.values(grids).forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML='';});
   DATA.forEach((item,i)=>{
     const grid=document.getElementById(grids[item.cat]);
