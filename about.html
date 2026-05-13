@@ -75,9 +75,22 @@ footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-c
 
 @media(max-width:900px){
   .wb-inner{grid-template-columns:1fr;gap:40px;}
-  .disc-grid{grid-template-columns:1fr 1fr;}
 }
-@media(max-width:540px){.disc-grid{grid-template-columns:1fr;}}
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hero{padding:60px 6% 48px;}
+  .hero-h1{font-size:28px;letter-spacing:-1px;}
+  .hero-sub{font-size:15px;}
+  .why-built{padding:60px 6%;}
+  .wb-blockquote{font-size:18px;}
+  .disc-grid{grid-template-columns:1fr;}
+  .disc-num{font-size:26px;}
+  .mission-strip{padding:60px 6%;}
+  .ms-h2{font-size:26px;}
+  .final{padding:60px 6%;}
+  footer{flex-direction:column;text-align:center;gap:16px;}
+  .fl{flex-wrap:wrap;justify-content:center;gap:12px;}
+}
 </style>
 </head>
 <body>

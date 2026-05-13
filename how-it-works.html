@@ -132,7 +132,58 @@ nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between
 
 footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);background:white;flex-wrap:wrap;gap:10px;}
 .fl{display:flex;gap:20px;}.fl a{color:var(--muted);text-decoration:none;}.fl a:hover{color:var(--primary);}
-@media(max-width:768px){.nav-links{display:none;}.aie-steps,.rc-grid{grid-template-columns:1fr;}}
+@media(max-width:900px){
+  .aie-steps{grid-template-columns:1fr;}
+  .rc-grid{grid-template-columns:1fr;}
+  .rp-inner{grid-template-columns:1fr;gap:40px;}
+  .wb-grid{grid-template-columns:1fr;}
+  .areas-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:768px){
+  .nav-links{display:none;}
+  /* Page header */
+  .ph{padding:60px 6% 40px;}
+  .ph-h1{font-size:28px;letter-spacing:-1px;}
+  .ph-sub{font-size:15px;}
+  /* Problem */
+  .problem{padding:60px 6%;}
+  .stat-pair{flex-direction:column;gap:20px;}
+  .stat-num{font-size:32px;}
+  .chart-card{padding:20px;}
+  .bar-label{width:80px;font-size:12px;}
+  /* Comparison */
+  .why-bizfit{padding:60px 6%;}
+  .wb-heading{font-size:28px;}
+  .wb-card{padding:24px 20px;}
+  .wb-list li{font-size:13px;}
+  /* AI Explain */
+  .ai-explain{padding:60px 6%;}
+  .aie-h{font-size:24px;}
+  /* Stage 2 */
+  .stage2{padding:60px 6% 0;}
+  .v-h{font-size:24px;}
+  .v-checks{flex-direction:column;align-items:stretch;}
+  .report-card{padding:24px;margin-bottom:-40px;}
+  .rc-header{flex-direction:column;gap:12px;}
+  .rc-score{text-align:left;}
+  /* Report preview */
+  .report-preview-sec{padding:60px 6%;}
+  .rp-heading{font-size:24px;}
+  /* Areas */
+  .areas-sec{padding:60px 6%;}
+  .areas-heading{font-size:28px;}
+  .areas-grid{grid-template-columns:1fr 1fr;}
+  .area-card{padding:18px 16px;}
+  /* FAQ */
+  .faq-sec{padding:60px 6%;}
+  .faq-q{font-size:14px;}
+  /* Footer */
+  footer{flex-direction:column;text-align:center;gap:16px;}
+  .fl{flex-wrap:wrap;justify-content:center;gap:12px;}
+}
+@media(max-width:480px){
+  .areas-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>

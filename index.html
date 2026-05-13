@@ -76,8 +76,42 @@ nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between
 .final-sub{font-size:16px;color:var(--muted);margin-bottom:28px;font-weight:400;}
 footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);background:transparent;flex-wrap:wrap;gap:10px;}
 .fl{display:flex;gap:20px;}.fl a{color:var(--muted);text-decoration:none;}.fl a:hover{color:var(--primary);}
-@media(max-width:900px){.slide{flex-direction:column;align-items:flex-start;gap:16px;}.slide-ai{width:100%;border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:16px;}}
-@media(max-width:768px){.nav-links{display:none;}}
+@media(max-width:900px){
+  .slide{flex-direction:column;align-items:flex-start;gap:16px;}
+  .slide-ai{width:100%;border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:16px;}
+  .process-inner{grid-template-columns:1fr;gap:48px;}
+  .process-left{position:static;}
+  .step-number{font-size:40px;}
+}
+@media(max-width:768px){
+  .nav-links{display:none;}
+  /* Hero */
+  .hero{padding:80px 6% 0;}
+  .h-h1{font-size:32px;letter-spacing:-1.5px;}
+  .h-sub{font-size:16px;}
+  .h-btns{flex-direction:column;width:100%;}
+  .h-btns .btn,.h-btns .btn-ghost{width:100%;justify-content:center;text-align:center;}
+  /* Carousel */
+  .carousel-wrap{height:200px;margin:40px auto -60px;}
+  .slide{padding:20px 24px;}
+  .slide-h{font-size:20px;}
+  .slide-p{font-size:13px;}
+  /* Strip */
+  .strip{flex-direction:column;gap:12px;padding:60px 6% 20px;text-align:center;}
+  /* Mission */
+  .mission{padding:60px 6%;}
+  .m-h2{font-size:28px;}
+  /* Ideas */
+  .i-top{flex-direction:column;align-items:flex-start;}
+  .i-tabs{width:100%;overflow-x:auto;}
+  .i-grid{grid-template-columns:1fr;}
+  /* Footer */
+  footer{flex-direction:column;text-align:center;gap:16px;}
+  .fl{flex-wrap:wrap;justify-content:center;gap:12px;}
+  /* Final */
+  .final{padding:60px 6%;}
+  .final .btn{width:100%;justify-content:center;}
+}
 </style>
 </head>
 <body>
