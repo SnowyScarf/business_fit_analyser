@@ -27,6 +27,13 @@ nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between
 .logo{font-family:'Inter',sans-serif;font-weight:800;font-size:22px;color:var(--ink);text-decoration:none;letter-spacing:-1px;}.logo span{color:var(--primary);}
 .nav-links{display:flex;gap:26px;}.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;}.nav-links a:hover{color:var(--ink);}
 .nav-cta{background:var(--primary);color:white;border:none;padding:10px 24px;border-radius:50px;font-weight:600;font-size:13px;font-family:'Inter',sans-serif;text-decoration:none;display:inline-block;text-transform:uppercase;letter-spacing:.02em;transition:all .2s;box-shadow:0 4px 12px rgba(5,150,105,.25);}.nav-cta:hover{background:var(--phov);transform:translateY(-1px);}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;font-size:24px;color:var(--ink);line-height:1;z-index:110;font-family:'Inter',sans-serif;}
+.mobile-menu{display:none;position:absolute;top:100%;left:0;right:0;background:white;border-bottom:1px solid var(--border);box-shadow:0 12px 36px rgba(0,0,0,.08);padding:16px 6% 24px;flex-direction:column;gap:4px;z-index:105;animation:menuSlide .25s ease-out;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--soft);text-decoration:none;font-size:15px;font-weight:500;padding:12px 0;border-bottom:1px solid var(--border);transition:color .2s;}.mobile-menu a:last-of-type{border-bottom:none;}
+.mobile-menu a:hover{color:var(--primary);}
+.mobile-menu .mob-cta{display:block;text-align:center;background:var(--primary);color:white;padding:14px 24px;border-radius:50px;font-weight:600;font-size:14px;font-family:'Inter',sans-serif;text-decoration:none;text-transform:uppercase;letter-spacing:.02em;margin-top:12px;box-shadow:0 4px 12px rgba(5,150,105,.25);}
+@keyframes menuSlide{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
 
 /* PAGE HEADER */
 .ph{padding:80px 6% 60px;text-align:center;background:transparent;}
@@ -141,6 +148,8 @@ footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-c
 }
 @media(max-width:768px){
   .nav-links{display:none;}
+  .nav-cta{display:none;}
+  .hamburger{display:block;}
   /* Page header */
   .ph{padding:60px 6% 40px;}
   .ph-h1{font-size:28px;letter-spacing:-1px;}
@@ -198,7 +207,24 @@ footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-c
     <a href="about.html">About</a>
   </div>
   <a href="waitlist.html" class="nav-cta">Join waitlist</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="how-it-works.html">How it works</a>
+    <a href="explore.html">Explore areas</a>
+    <a href="case-studies.html">Stories</a>
+    <a href="about.html">About</a>
+    <a href="waitlist.html" class="mob-cta">Join waitlist →</a>
+  </div>
 </nav>
+<script>
+function toggleMenu(){
+  const m=document.getElementById('mobileMenu');
+  const b=document.querySelector('.hamburger');
+  m.classList.toggle('open');
+  b.textContent=m.classList.contains('open')?'✕':'☰';
+}
+</script>
 
 <section class="ph">
   <div class="eyebrow">How it works</div>
