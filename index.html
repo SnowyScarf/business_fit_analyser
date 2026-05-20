@@ -24,7 +24,7 @@
 html{scroll-behavior:smooth;}
 body{background-color:var(--bg);background-image:url("wavy_grid.svg");background-size:1200px 1200px;background-position:top center;background-attachment:fixed;color:var(--ink);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;}
 nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:13px 6%;background:rgba(248,250,252,.9);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
-.logo{font-family:'Inter',sans-serif;font-weight:800;font-size:22px;color:var(--ink);text-decoration:none;letter-spacing:-1px;}.logo span{color:var(--primary);}
+.logo{font-family:'Inter',sans-serif;font-weight:800;font-size:22px;color:var(--ink);text-decoration:none;letter-spacing:-1px;}.logo span{color:var(--primary);}.logo-soon{font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:rgba(5,150,105,.06);border:1px solid rgba(5,150,105,.1);padding:2px 7px;border-radius:999px;margin-left:4px;line-height:1.3;white-space:nowrap;flex-shrink:0;font-family:'Inter',sans-serif;}
 .nav-links{display:flex;gap:26px;}.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;}.nav-links a:hover{color:var(--ink);}
 .nav-cta{background:var(--primary);color:white;border:none;padding:10px 24px;border-radius:50px;font-weight:600;font-size:13px;font-family:'Inter',sans-serif;text-decoration:none;display:inline-block;text-transform:uppercase;letter-spacing:.02em;transition:all .2s;box-shadow:0 4px 12px rgba(5,150,105,.25);}.nav-cta:hover{background:var(--phov);transform:translateY(-1px);}
 /* Hamburger */
@@ -152,7 +152,7 @@ footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-c
 <body>
 
 <nav>
-  <a href="index.html" class="logo" style="display:inline-flex;align-items:center;gap:6px;"><img src="logo.png" alt="" style="height:40px;width:auto;transform:scale(1.1);transform-origin:left center;"> Biz<span>Fit</span></a>
+  <a href="index.html" class="logo" style="display:inline-flex;align-items:center;gap:6px;"><img src="logo.png" alt="" style="height:40px;width:auto;transform:scale(1.1);transform-origin:left center;"> Biz<span>Fit</span><small class="logo-soon">Coming soon</small></a>
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
@@ -285,7 +285,7 @@ function toggleMenu(){
 
 <section class="mission">
   <div class="m-icon" style="margin-bottom:24px;"><img src="logo.png" alt="BizFit Logo" style="height:60px; width:auto; display:inline-block;"></div>
-  <h2 class="m-h2">We believe the right opportunity shouldn't be a privilege.</h2>
+  <h2 class="m-h2">The right opportunity shouldn't come down to luck or connections.</h2>
   <p class="m-p">Every student hits the employment wall. But starting something of your own shouldn't mean blindly following trends or risking money you don't have. We built BizFit to strip away the guesswork and give you an honest, mathematical validation of what you can actually do with the resources you have today.</p>
 </section>
 
@@ -310,6 +310,23 @@ function toggleMenu(){
 .survey-track{background:var(--border);border-radius:20px;height:8px;overflow:hidden;}
 .survey-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--primary),#34D399);}
 .survey-note{font-size:12px;color:var(--muted);margin-top:18px;padding-top:14px;border-top:1px solid var(--border);text-align:center;font-style:italic;}
+.poll-question{font-size:15px;font-weight:600;color:var(--ink);line-height:1.45;margin-bottom:18px;}
+.poll-options{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.poll-option{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:white;cursor:pointer;transition:border-color .15s,background .15s;}
+.poll-option:hover{border-color:#6EE7B7;}
+.poll-option.is-selected{border-color:var(--primary);background:var(--pl);}
+.poll-option input{margin:0;accent-color:var(--primary);flex-shrink:0;}
+.poll-option-text{font-size:13px;color:var(--soft);line-height:1.4;}
+.poll-submit{width:100%;background:var(--primary);color:white;border:none;padding:12px 20px;border-radius:50px;font-weight:600;font-size:13px;font-family:'Inter',sans-serif;cursor:pointer;text-transform:uppercase;letter-spacing:.02em;transition:background .2s,opacity .2s;box-shadow:0 4px 12px rgba(5,150,105,.2);}
+.poll-submit:hover:not(:disabled){background:var(--phov);}
+.poll-submit:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;}
+.poll-results-title{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.poll-results-head{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:20px;line-height:1.45;}
+.survey-row.is-yours .survey-label{color:var(--ink);font-weight:600;}
+.poll-yours{font-size:10px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.06em;margin-left:4px;}
+.survey-fill{transition:width .6s ease;}
+.poll-cta{display:block;text-align:center;margin-top:16px;font-size:13px;font-weight:600;color:var(--primary);text-decoration:none;}
+.poll-cta:hover{text-decoration:underline;}
 @media(max-width:900px){.reality-inner{grid-template-columns:1fr;gap:40px;}}
 @media(max-width:768px){.reality-sec{padding:48px 6%;}.rs-num{font-size:28px;min-width:72px;}.reality-sub{line-height:1.5;margin-bottom:28px;}}
 </style>
@@ -335,14 +352,20 @@ function toggleMenu(){
         </div>
       </div>
     </div>
-    <div class="survey-card">
-      <div class="survey-title">How students chose their last opportunity</div>
-      <div class="survey-row"><div class="survey-top"><span class="survey-label">Saw someone else do it</span><span class="survey-pct">41%</span></div><div class="survey-track"><div class="survey-fill" style="width:41%"></div></div></div>
-      <div class="survey-row"><div class="survey-top"><span class="survey-label">YouTube / social media</span><span class="survey-pct">28%</span></div><div class="survey-track"><div class="survey-fill" style="width:28%"></div></div></div>
-      <div class="survey-row"><div class="survey-top"><span class="survey-label">Family suggested it</span><span class="survey-pct">19%</span></div><div class="survey-track"><div class="survey-fill" style="width:19%"></div></div></div>
-      <div class="survey-row"><div class="survey-top"><span class="survey-label">Matched my actual skills</span><span class="survey-pct">8%</span></div><div class="survey-track"><div class="survey-fill" style="width:8%"></div></div></div>
-      <div class="survey-row"><div class="survey-top"><span class="survey-label">Used a tool or analysis</span><span class="survey-pct">4%</span></div><div class="survey-track"><div class="survey-fill" style="width:4%"></div></div></div>
-      <div class="survey-note">Survey of 200 students & recent graduates across India — 2024</div>
+    <div class="survey-card" id="pollCard">
+      <div class="poll-active">
+        <div class="survey-title">Quick poll</div>
+        <p class="poll-question">How did you pick your last side hustle or business idea?</p>
+        <div class="poll-options"></div>
+        <button type="button" class="poll-submit" disabled>See how others answered</button>
+      </div>
+      <div class="poll-results" hidden>
+        <div class="poll-results-title">2024 survey results</div>
+        <p class="poll-results-head">How students chose their last opportunity</p>
+        <div class="poll-results-rows"></div>
+        <div class="survey-note">Benchmark: survey of 200 students &amp; recent graduates across India — 2024</div>
+        <a href="waitlist.html" class="poll-cta">Want a fit-based pick next time? Join the waitlist →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -658,7 +681,7 @@ function toggleMenu(){
 </section>
 
 <footer>
-  <a href="index.html" class="logo" style="display:inline-flex;align-items:center;gap:6px;font-size:18px;"><img src="logo.png" alt="" style="height:34px;width:auto;margin-top:0px;transform:scale(1.1);transform-origin:left center;"> Biz<span>Fit</span></a>
+  <a href="index.html" class="logo" style="display:inline-flex;align-items:center;gap:6px;font-size:18px;"><img src="logo.png" alt="" style="height:34px;width:auto;margin-top:0px;transform:scale(1.1);transform-origin:left center;"> Biz<span>Fit</span><small class="logo-soon">Coming soon</small></a>
   <div class="fl">
     <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
@@ -683,5 +706,6 @@ function nextSlide() {
 }
 setInterval(nextSlide, 4000);
 </script>
+<script src="assets/poll.js"></script>
 </body>
 </html>
