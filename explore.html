@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Explore Domains — BizFit</title>
-<meta name="description" content="Browse 120+ student-friendly business opportunities across 11 domains. Zero to minimal capital needed.">
+<meta name="description" content="Browse 135+ student-friendly business opportunities across 11 domains. Filter by city tier and investment from ₹0 to ₹5 lakhs.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -48,7 +48,18 @@ nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between
 .stat-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
 
 /* FILTER BAR */
-.filter-bar{padding:14px 6%;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;gap:8px;overflow-x:auto;align-items:center;box-shadow:0 1px 4px rgba(0,0,0,.04);scrollbar-width:none}
+.filter-panel{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.filter-advanced{padding:16px 6% 12px;display:flex;flex-wrap:wrap;gap:20px 28px;align-items:flex-end;border-bottom:1px solid var(--border)}
+.filter-group{display:flex;flex-direction:column;gap:8px;min-width:200px;flex:1}
+.filter-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.city-select{padding:9px 14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:14px;background:var(--bg);color:var(--ink);outline:none;max-width:280px}
+.city-select:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--pglow)}
+.tier-badge{display:none;align-items:center;font-size:12px;font-weight:600;color:var(--primary);background:var(--plight);border:1px solid #6EE7B7;padding:4px 12px;border-radius:999px;margin-top:4px;width:fit-content}
+.filter-invest{min-width:260px;max-width:360px;flex:2}
+.invest-value{font-size:14px;font-weight:700;color:var(--ink)}
+.invest-slider{width:100%;height:6px;accent-color:var(--primary);cursor:pointer}
+.slider-ticks{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:2px}
+.filter-bar{padding:12px 6% 14px;display:flex;gap:8px;overflow-x:auto;align-items:center;scrollbar-width:none}
 .filter-bar::-webkit-scrollbar{display:none}
 .search-input{padding:9px 16px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:14px;min-width:200px;outline:none;background:var(--bg);color:var(--ink);transition:all .2s;flex-shrink:0}
 .search-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--pglow)}
@@ -132,6 +143,9 @@ footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-c
   .hero h1{font-size:32px;letter-spacing:-1px}
   .hero-stats{gap:24px}
   .stat-num{font-size:24px}
+  .filter-advanced{padding:14px 4%;flex-direction:column;align-items:stretch}
+  .filter-group{min-width:0;max-width:none}
+  .city-select{max-width:none}
   .filter-bar{padding:10px 4%}
   .search-input{min-width:160px;font-size:13px}
   .fbtn{padding:6px 11px;font-size:12px}
@@ -174,7 +188,7 @@ function toggleMenu(){
 </script>
 
 <section class="hero">
-  <h1>Find Your <em>Perfect</em> Path</h1>
+  <h1>Find Your <em>Perfect</em> Opportunity</h1>
   <p>Curated opportunities students across India are already running — with little or zero investment.</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num" id="totalCount">—</div><div class="stat-label">Opportunities</div></div>
@@ -183,8 +197,60 @@ function toggleMenu(){
   </div>
 </section>
 
-<div class="filter-bar">
-  <input class="search-input" type="text" id="searchBox" placeholder="Search opportunities..." oninput="searchBiz(this.value)">
+<div class="filter-panel">
+  <div class="filter-advanced">
+    <div class="filter-group">
+      <span class="filter-label">Your city</span>
+      <select class="city-select" id="cityFilter" aria-label="Filter by city">
+        <option value="">All cities</option>
+        <optgroup label="Tier-1">
+          <option value="mumbai">Mumbai</option>
+          <option value="delhi">Delhi NCR</option>
+          <option value="bengaluru">Bengaluru</option>
+          <option value="hyderabad">Hyderabad</option>
+          <option value="chennai">Chennai</option>
+          <option value="kolkata">Kolkata</option>
+          <option value="pune">Pune</option>
+          <option value="ahmedabad">Ahmedabad</option>
+        </optgroup>
+        <optgroup label="Tier-2">
+          <option value="jaipur">Jaipur</option>
+          <option value="lucknow">Lucknow</option>
+          <option value="chandigarh">Chandigarh</option>
+          <option value="kochi">Kochi</option>
+          <option value="indore">Indore</option>
+          <option value="nagpur">Nagpur</option>
+          <option value="coimbatore">Coimbatore</option>
+          <option value="bhubaneswar">Bhubaneswar</option>
+          <option value="vadodara">Vadodara</option>
+          <option value="surat">Surat</option>
+          <option value="visakhapatnam">Visakhapatnam</option>
+          <option value="patna">Patna</option>
+          <option value="guwahati">Guwahati</option>
+        </optgroup>
+        <optgroup label="Tier-3">
+          <option value="ranchi">Ranchi</option>
+          <option value="raipur">Raipur</option>
+          <option value="bhopal">Bhopal</option>
+          <option value="dehradun">Dehradun</option>
+          <option value="jodhpur">Jodhpur</option>
+          <option value="varanasi">Varanasi</option>
+          <option value="mangalore">Mangalore</option>
+          <option value="mysuru">Mysuru</option>
+          <option value="other">Other / smaller city</option>
+        </optgroup>
+      </select>
+      <span class="tier-badge" id="tierBadge"></span>
+    </div>
+    <div class="filter-group filter-invest">
+      <span class="filter-label">Max investment</span>
+      <span class="invest-value" id="investLabel">Up to ₹5,00,000</span>
+      <input type="range" class="invest-slider" id="investSlider" min="0" max="500000" step="5000" value="500000" aria-label="Maximum investment in rupees">
+      <div class="slider-ticks"><span>₹0</span><span>₹5L</span></div>
+    </div>
+  </div>
+  <div class="filter-bar">
+  <input class="search-input" type="text" id="searchBox" placeholder="Search opportunities..." oninput="applyFilters()">
   <button class="fbtn on"  onclick="filterCat('all',this)">All</button>
   <button class="fbtn" onclick="filterCat('digital',this)">💻 Tech</button>
   <button class="fbtn" onclick="filterCat('campus',this)">🎓 Campus</button>
@@ -197,21 +263,6 @@ function toggleMenu(){
   <button class="fbtn" onclick="filterCat('food',this)">🍳 Food</button>
   <button class="fbtn" onclick="filterCat('education',this)">📚 Education</button>
   <button class="fbtn" onclick="filterCat('wow',this)">🤯 Wildcard</button>
-</div>
-
-<div class="advanced-filters" style="display: flex; gap: 32px; align-items: center; justify-content: center; padding: 0 6% 30px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto;">
-  <div class="filter-group" style="display:flex; align-items:center; gap:12px;">
-    <label for="invSlider" style="font-size: 14px; font-weight: 600; color: var(--muted);">Max Investment: <span id="invVal" style="color:var(--primary);">₹5,00,000</span></label>
-    <input type="range" id="invSlider" min="0" max="500000" step="5000" value="500000" oninput="updateAdvancedFilters()" style="cursor:pointer; width: 200px;">
-  </div>
-  <div class="filter-group" style="display:flex; align-items:center; gap:12px;">
-    <label for="cityTier" style="font-size: 14px; font-weight: 600; color: var(--muted);">City Type:</label>
-    <select id="cityTier" onchange="updateAdvancedFilters()" style="padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); font-family: 'Inter', sans-serif; cursor:pointer; font-size:14px; color: var(--ink);">
-      <option value="all">All Cities</option>
-      <option value="1">Tier 1 (Metros)</option>
-      <option value="2">Tier 2 (Mid-size cities)</option>
-      <option value="3">Tier 3 / Rural</option>
-    </select>
   </div>
 </div>
 
@@ -229,7 +280,7 @@ function toggleMenu(){
 
 <div class="empty-state" id="emptyState">
   <h3>No matches found</h3>
-  <p style="color:var(--muted);font-size:14px">Try a different search term or domain filter.</p>
+  <p style="color:var(--muted);font-size:14px">Try another city, investment range, search term, or domain.</p>
 </div>
 
 <section class="bottom-cta">
@@ -266,6 +317,7 @@ function toggleMenu(){
   </div>
 </div>
 
+<script src="assets/explore-filters.js"></script>
 <script>
 const DATA = [
 
@@ -450,23 +502,6 @@ const DATA = [
 
 ];
 
-// Initialize dynamic properties (tier mapping and numerical capital for filtering)
-DATA.forEach(d => {
-  const t1 = ['digital','creative','health'];
-  const t23 = ['agri'];
-  if (t1.includes(d.cat)) d.tier = [1,2];
-  else if (t23.includes(d.cat)) d.tier = [2,3];
-  else d.tier = [1,2,3];
-  
-  if (d.cap === '₹0') d.numCap = 0;
-  else {
-    let v = d.cap.replace('₹','').toLowerCase();
-    if (v.includes('k')) d.numCap = parseFloat(v) * 1000;
-    else if (v.includes('l')) d.numCap = parseFloat(v) * 100000;
-    else d.numCap = parseFloat(v);
-  }
-});
-
 /* ── RENDER ─────────────────────────────────────── */
 function renderCards() {
   const cats = ['digital','campus','service','creative','resell','health','planet','agri','food','education','wow'];
@@ -476,7 +511,7 @@ function renderCards() {
     const cnt = document.getElementById('cnt-' + cat);
     if (cnt) cnt.textContent = DATA.filter(d => d.cat === cat).length;
   });
-  document.getElementById('totalCount').textContent = DATA.length + '+';
+  document.getElementById('totalCount').textContent = '135+';
 
   DATA.forEach((item, i) => {
     const grid = document.getElementById('grid-' + item.cat);
@@ -485,6 +520,8 @@ function renderCards() {
     card.className = 'card';
     card.setAttribute('data-name', (item.n + ' ' + item.tags.join(' ')).toLowerCase());
     card.setAttribute('data-idx', i);
+    card.setAttribute('data-cap', item.capNum);
+    card.setAttribute('data-tiers', item.tiers.join(','));
     card.onclick = () => openModal(i);
     const isWow = item.cat === 'wow';
     card.innerHTML = `
@@ -522,50 +559,74 @@ function closeModal() {
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-/* ── FILTER & SEARCH ─────────────────────────────────────── */
-let currentCat = 'all';
+var activeCat = 'all';
 
-function updateAdvancedFilters() {
-  const maxInv = parseInt(document.getElementById('invSlider').value);
-  document.getElementById('invVal').textContent = '₹' + maxInv.toLocaleString('en-IN');
-  const selTier = document.getElementById('cityTier').value;
-  const q = document.getElementById('searchBox').value.toLowerCase();
-  
-  let found = false;
+function updateInvestLabel() {
+  var val = parseInt(document.getElementById('investSlider').value, 10);
+  var label = val >= 500000 ? 'Up to ₹5,00,000' : 'Up to ' + formatRupee(val);
+  document.getElementById('investLabel').textContent = label;
+}
+
+/* ── FILTER ─────────────────────────────────────── */
+function filterCat(cat, btn) {
+  activeCat = cat;
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('on'));
+  if (btn) btn.classList.add('on');
+  document.querySelectorAll('.cat-sec').forEach(s => {
+    s.style.display = (cat === 'all' || s.id === 'sec-' + cat) ? 'block' : 'none';
+  });
+  applyFilters();
+}
+
+function applyFilters() {
+  var q = (document.getElementById('searchBox').value || '').toLowerCase();
+  var cityKey = document.getElementById('cityFilter').value;
+  var tierInfo = CITY_TIERS[cityKey] || CITY_TIERS[''];
+  var activeTier = tierInfo.tier;
+  var maxInvest = parseInt(document.getElementById('investSlider').value, 10);
+  var tierBadge = document.getElementById('tierBadge');
+  if (cityKey && tierInfo.label) {
+    tierBadge.textContent = 'Showing ' + tierInfo.label + ' opportunities';
+    tierBadge.style.display = 'inline-flex';
+  } else {
+    tierBadge.textContent = '';
+    tierBadge.style.display = 'none';
+  }
+  var found = false;
   document.querySelectorAll('.cat-sec').forEach(sec => {
-    let secVis = false;
+    var secVis = false;
+    var catMatch = activeCat === 'all' || sec.id === 'sec-' + activeCat;
+    if (!catMatch) {
+      sec.style.display = 'none';
+      return;
+    }
     sec.querySelectorAll('.card').forEach(card => {
-      const idx = parseInt(card.getAttribute('data-idx'));
-      const d = DATA[idx];
-      
-      const matchCat = (currentCat === 'all' || d.cat === currentCat);
-      const matchSearch = card.getAttribute('data-name').includes(q);
-      const matchInv = d.numCap <= maxInv;
-      const matchTier = (selTier === 'all' || d.tier.includes(parseInt(selTier)));
-      
-      const show = matchCat && matchSearch && matchInv && matchTier;
+      var idx = parseInt(card.getAttribute('data-idx'), 10);
+      var item = DATA[idx];
+      var matchSearch = !q || card.getAttribute('data-name').includes(q);
+      var matchInvest = item.capNum <= maxInvest;
+      var matchTier = activeTier === null || item.tiers.indexOf(activeTier) !== -1;
+      var show = matchSearch && matchInvest && matchTier;
       card.style.display = show ? '' : 'none';
       if (show) { secVis = true; found = true; }
     });
-    sec.style.display = (secVis) ? 'block' : 'none';
+    sec.style.display = secVis ? 'block' : 'none';
   });
-  document.getElementById('emptyState').style.display = (found) ? 'none' : 'block';
+  document.getElementById('emptyState').style.display = found ? 'none' : 'block';
 }
 
-function filterCat(cat, btn) {
-  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('on'));
-  if (btn) btn.classList.add('on');
-  currentCat = cat;
-  updateAdvancedFilters();
+function setupExploreFilters() {
+  document.getElementById('cityFilter').addEventListener('change', applyFilters);
+  document.getElementById('investSlider').addEventListener('input', function () {
+    updateInvestLabel();
+    applyFilters();
+  });
+  updateInvestLabel();
 }
 
-function searchBiz(val) {
-  updateAdvancedFilters();
-}
-
-}
-
+enrichOpportunityData(DATA);
 renderCards();
+setupExploreFilters();
 </script>
 </body>
 </html>
