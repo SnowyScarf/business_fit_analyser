@@ -152,8 +152,7 @@ footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-c
     <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
     <a href="explore.html">Explore areas</a>
-    <a href="case-studies.html">Stories</a>
-    <a href="about.html">About</a>
+    <a href="about.html">About Us</a>
   </div>
   <a href="waitlist.html" class="nav-cta">Join waitlist</a>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
@@ -161,8 +160,7 @@ footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-c
     <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
     <a href="explore.html">Explore areas</a>
-    <a href="case-studies.html">Stories</a>
-    <a href="about.html">About</a>
+    <a href="about.html">About Us</a>
     <a href="waitlist.html" class="mob-cta">Join waitlist →</a>
   </div>
 </nav>
@@ -201,6 +199,22 @@ function toggleMenu(){
   <button class="fbtn" onclick="filterCat('wow',this)">🤯 Wildcard</button>
 </div>
 
+<div class="advanced-filters" style="display: flex; gap: 32px; align-items: center; justify-content: center; padding: 0 6% 30px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto;">
+  <div class="filter-group" style="display:flex; align-items:center; gap:12px;">
+    <label for="invSlider" style="font-size: 14px; font-weight: 600; color: var(--muted);">Max Investment: <span id="invVal" style="color:var(--primary);">₹5,00,000</span></label>
+    <input type="range" id="invSlider" min="0" max="500000" step="5000" value="500000" oninput="updateAdvancedFilters()" style="cursor:pointer; width: 200px;">
+  </div>
+  <div class="filter-group" style="display:flex; align-items:center; gap:12px;">
+    <label for="cityTier" style="font-size: 14px; font-weight: 600; color: var(--muted);">City Type:</label>
+    <select id="cityTier" onchange="updateAdvancedFilters()" style="padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); font-family: 'Inter', sans-serif; cursor:pointer; font-size:14px; color: var(--ink);">
+      <option value="all">All Cities</option>
+      <option value="1">Tier 1 (Metros)</option>
+      <option value="2">Tier 2 (Mid-size cities)</option>
+      <option value="3">Tier 3 / Rural</option>
+    </select>
+  </div>
+</div>
+
 <section class="cat-sec" id="sec-digital"><div class="cat-hdr"><span class="cat-icon">💻</span><h2 class="cat-title">Technology &amp; Digital</h2><span class="cat-count" id="cnt-digital"></span></div><div class="grid" id="grid-digital"></div></section>
 <section class="cat-sec" id="sec-campus"><div class="cat-hdr"><span class="cat-icon">🎓</span><h2 class="cat-title">Campus &amp; Student</h2><span class="cat-count" id="cnt-campus"></span></div><div class="grid" id="grid-campus"></div></section>
 <section class="cat-sec" id="sec-service"><div class="cat-hdr"><span class="cat-icon">🔧</span><h2 class="cat-title">Local Services</h2><span class="cat-count" id="cnt-service"></span></div><div class="grid" id="grid-service"></div></section>
@@ -230,8 +244,7 @@ function toggleMenu(){
     <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
     <a href="explore.html">Explore areas</a>
-    <a href="case-studies.html">Stories</a>
-    <a href="about.html">About</a>
+    <a href="about.html">About Us</a>
     <a href="waitlist.html">Join waitlist</a>
     <a href="mailto:hello@bizfit.com">Ask a question</a>
   </div>
@@ -437,6 +450,23 @@ const DATA = [
 
 ];
 
+// Initialize dynamic properties (tier mapping and numerical capital for filtering)
+DATA.forEach(d => {
+  const t1 = ['digital','creative','health'];
+  const t23 = ['agri'];
+  if (t1.includes(d.cat)) d.tier = [1,2];
+  else if (t23.includes(d.cat)) d.tier = [2,3];
+  else d.tier = [1,2,3];
+  
+  if (d.cap === '₹0') d.numCap = 0;
+  else {
+    let v = d.cap.replace('₹','').toLowerCase();
+    if (v.includes('k')) d.numCap = parseFloat(v) * 1000;
+    else if (v.includes('l')) d.numCap = parseFloat(v) * 100000;
+    else d.numCap = parseFloat(v);
+  }
+});
+
 /* ── RENDER ─────────────────────────────────────── */
 function renderCards() {
   const cats = ['digital','campus','service','creative','resell','health','planet','agri','food','education','wow'];
@@ -492,32 +522,47 @@ function closeModal() {
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-/* ── FILTER ─────────────────────────────────────── */
-function filterCat(cat, btn) {
-  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('on'));
-  if (btn) btn.classList.add('on');
-  document.querySelectorAll('.cat-sec').forEach(s => {
-    s.style.display = (cat === 'all' || s.id === 'sec-' + cat) ? 'block' : 'none';
-  });
-  document.getElementById('searchBox').value = '';
-  document.querySelectorAll('.card').forEach(c => c.style.display = '');
-  document.getElementById('emptyState').style.display = 'none';
-}
+/* ── FILTER & SEARCH ─────────────────────────────────────── */
+let currentCat = 'all';
 
-/* ── SEARCH ─────────────────────────────────────── */
-function searchBiz(val) {
-  const q = val.toLowerCase();
+function updateAdvancedFilters() {
+  const maxInv = parseInt(document.getElementById('invSlider').value);
+  document.getElementById('invVal').textContent = '₹' + maxInv.toLocaleString('en-IN');
+  const selTier = document.getElementById('cityTier').value;
+  const q = document.getElementById('searchBox').value.toLowerCase();
+  
   let found = false;
   document.querySelectorAll('.cat-sec').forEach(sec => {
     let secVis = false;
     sec.querySelectorAll('.card').forEach(card => {
-      const match = card.getAttribute('data-name').includes(q);
-      card.style.display = match ? '' : 'none';
-      if (match) { secVis = true; found = true; }
+      const idx = parseInt(card.getAttribute('data-idx'));
+      const d = DATA[idx];
+      
+      const matchCat = (currentCat === 'all' || d.cat === currentCat);
+      const matchSearch = card.getAttribute('data-name').includes(q);
+      const matchInv = d.numCap <= maxInv;
+      const matchTier = (selTier === 'all' || d.tier.includes(parseInt(selTier)));
+      
+      const show = matchCat && matchSearch && matchInv && matchTier;
+      card.style.display = show ? '' : 'none';
+      if (show) { secVis = true; found = true; }
     });
-    sec.style.display = (secVis || q === '') ? 'block' : 'none';
+    sec.style.display = (secVis) ? 'block' : 'none';
   });
-  document.getElementById('emptyState').style.display = (found || q === '') ? 'none' : 'block';
+  document.getElementById('emptyState').style.display = (found) ? 'none' : 'block';
+}
+
+function filterCat(cat, btn) {
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('on'));
+  if (btn) btn.classList.add('on');
+  currentCat = cat;
+  updateAdvancedFilters();
+}
+
+function searchBiz(val) {
+  updateAdvancedFilters();
+}
+
 }
 
 renderCards();
