@@ -130,10 +130,33 @@ nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between
 .bottom-cta p{color:var(--muted);margin-bottom:28px;font-size:15px}
 
 /* FOOTER */
-footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);background:var(--bg2);flex-wrap:wrap;gap:10px}
+footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);background:transparent;flex-wrap:wrap;gap:10px}
 .fl{display:flex;gap:20px;flex-wrap:wrap}
 .fl a{color:var(--muted);text-decoration:none}
 .fl a:hover{color:var(--primary)}
+
+/* SUGGEST OPPORTUNITY ROW */
+.filter-suggest {
+  padding: 10px 6%;
+  text-align: right;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  background: var(--bg2);
+}
+.suggest-link {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--primary);
+  margin-left: 5px;
+  transition: all .2s;
+}
+.suggest-link:hover {
+  color: var(--phov);
+  border-bottom-color: var(--phov);
+}
+
 
 @media(max-width:768px){
   .nav-links{display:none}
@@ -155,6 +178,10 @@ footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-c
   .modal{padding:28px}
   footer{flex-direction:column;text-align:center}
   .fl{justify-content:center;gap:12px}
+  .filter-suggest {
+    padding: 10px 4%;
+    text-align: center;
+  }
 }
 </style>
 </head>
@@ -165,7 +192,7 @@ footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-c
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
-    <a href="explore.html">Explore areas</a>
+    <a href="explore.html">Explore Opportunities</a>
     <a href="about.html">About Us</a>
   </div>
   <a href="waitlist.html" class="nav-cta">Join waitlist</a>
@@ -173,7 +200,7 @@ footer{padding:24px 6%;border-top:1px solid var(--border);display:flex;justify-c
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
-    <a href="explore.html">Explore areas</a>
+    <a href="explore.html">Explore Opportunities</a>
     <a href="about.html">About Us</a>
     <a href="waitlist.html" class="mob-cta">Join waitlist →</a>
   </div>
@@ -264,6 +291,9 @@ function toggleMenu(){
   <button class="fbtn" onclick="filterCat('education',this)">📚 Education</button>
   <button class="fbtn" onclick="filterCat('wow',this)">🤯 Wildcard</button>
   </div>
+  <div class="filter-suggest">
+    Have a student business idea not listed here? <a href="./suggest.html" class="suggest-link">Suggest an opportunity →</a>
+  </div>
 </div>
 
 <section class="cat-sec" id="sec-digital"><div class="cat-hdr"><span class="cat-icon">💻</span><h2 class="cat-title">Technology &amp; Digital</h2><span class="cat-count" id="cnt-digital"></span></div><div class="grid" id="grid-digital"></div></section>
@@ -286,7 +316,7 @@ function toggleMenu(){
 <section class="bottom-cta">
   <h2>Ready to start your journey?</h2>
   <p>Join the waitlist and get a personalized fit report for free.</p>
-  <a href="waitlist.html" class="nav-cta" style="padding:16px 40px;font-size:14px">Get Your Fit Report</a>
+  <a href="waitlist.html" class="nav-cta" style="padding:16px 40px;font-size:14px">Reserve My Fit Report on Launch</a>
 </section>
 
 <footer>
@@ -294,7 +324,7 @@ function toggleMenu(){
   <div class="fl">
     <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
-    <a href="explore.html">Explore areas</a>
+    <a href="explore.html">Explore Opportunities</a>
     <a href="about.html">About Us</a>
     <a href="waitlist.html">Join waitlist</a>
     <a href="mailto:hello@bizfit.com">Ask a question</a>
@@ -313,7 +343,7 @@ function toggleMenu(){
       <div class="meta-box"><div class="meta-label">Capital Needed</div><div class="meta-val" id="mCap"></div></div>
       <div class="meta-box"><div class="meta-label">Key Advantage</div><div class="meta-val" id="mAdv"></div></div>
     </div>
-    <a href="waitlist.html" class="modal-cta">Get Personalized Fit Report →</a>
+    <a href="waitlist.html" class="modal-cta">Reserve My Fit Report on Launch →</a>
   </div>
 </div>
 
